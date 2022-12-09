@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :tickets,only:[:index,:show,:create]
+  resources :events
+  # resources :users
+  post"/login", to: "sessions#create"
+  delete"/logout", to: "sessions#destroy"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  post"/signup", to: "users#create"
+
+  get"/me", to: "users#show"
+
+  get"/events", to: "events#index"
+
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
